@@ -8,16 +8,19 @@
 #include <WiFiClientSecure.h>
 #include <Ticker.h>
 #include "ca_cert.h"
+#include <SPI.h>
 
-#define SERVO_PIN 18
-#define GREEN_LED_PIN 2
-#define RED_LED_PIN 15
+#define SERVO_PIN 25
+#define GREEN_LED_PIN 13
+#define RED_LED_PIN 14
+#define RST_PIN 22
+#define SS_PIN 21
 
 WiFiClientSecure tlsClient;
 PubSubClient mqttClient(tlsClient);
 Ticker mqttPulishTicker;
 Servo servo;
-MFRC522 rfid(5, 4);
+MFRC522 rfid(SS_PIN, RST_PIN);
 
 unsigned long startTime = 0;
 unsigned long endTime = 0;
@@ -137,25 +140,25 @@ void loop()
 
       if (!status) {
         startTime = millis();
-        servo.write(90); // Mở cửa
+        servo.write(90);
         delay(3000);
-        servo.write(0);  // Đóng cửa
+        servo.write(0);
         status = true;
         updateParkingStatus(true);
       } else {
         endTime = millis();
-        float parkingTime = (endTime - startTime) / 3600000.0; // Đổi ra giờ
+        float parkingTime = (endTime - startTime) / 3600000.0;
         fee = parkingTime * fee_per_hour;
 
         Serial.println("Fee: " + String(fee) + " VND");
 
-        servo.write(90); // Mở cửa
+        servo.write(90);
         delay(3000);
-        servo.write(0);  // Đóng cửa
+        servo.write(0);
 
         status = false;
         updateParkingStatus(false);
-        startTime = 0; // Reset thời gian
+        startTime = 0;
       }
     } else {
       digitalWrite(RED_LED_PIN, HIGH);
@@ -175,7 +178,7 @@ String getCardID() {
 }
 
 bool isValidCard(String cardID) {
-  return (cardID == "abcd1234" || cardID == "efgh5678");
+  return (cardID == "A7 04 C4 B5" || cardID == "2C D1 FE 2F");
 }
 
 void updateParkingStatus(bool occupied) {
