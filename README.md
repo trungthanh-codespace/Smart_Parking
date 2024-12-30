@@ -19,6 +19,3 @@ Truyền thống quản lý bãi đỗ xe tại các khu đô thị chủ yếu 
 ## Flow Node-RED
 ![Node-RED flow.png](Node-REDflow.png)
 
-## Kết nối MQTT
-Sử dụng sever MQTT trên cloud của HiveMQ
-![HiveMQ detail.png](HiveMQdetail.png)
