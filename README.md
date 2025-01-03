@@ -19,3 +19,16 @@ Truyền thống quản lý bãi đỗ xe tại các khu đô thị chủ yếu 
 ## Flow Node-RED
 ![Node-RED flow.png](Node-REDflow.png)
 
+## Kết quả
+Em đã thử nghiệm vài lần với module RFID nhưng vẫn chưa thể đọc được thẻ nên em đã thay quá trình đọc thẻ bằng cách nhấn nút bấm vật lý.
+
+## Kết luận
+* Kết quả đạt được:
+- Dự án mô phỏng được hệ thống quản lý bãi đỗ xe thông minh đơn giản sử dụng ESP32
+- Người dùng có thể dễ dàng thao tác chỉ bằng nút bấm hoặc giao diện trực quan, giúp tiết kiệm thời gian và tăng hiệu quả vận hành trên Dashboard
+* Hạn chế:
+- Module RFID chưa hoạt động như mong đợi nên phải thay bằng nút bấm
+- Nguồn cấp cho động cơ servo chưa ổn định nên động cơ chạy không đúng như mong đợi
+* Đề xuất phát triển dự án:
+- Phát triển ứng dụng di động hoặc website để người dùng có thể quản lý và thanh toán từ xa
+- Tăng cường bảo mật MQTT và mã hóa dữ liệu để bảo vệ thông tin người dùng và hệ thống
